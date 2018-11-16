@@ -7,12 +7,12 @@ class Demon {
     const EXPIRE = 60 * 2;
     
     public function writeStartTime() {        
-        if(is_file(__DIR__ . static::FILE)) unlink (__DIR__ . static::FILE);
-        file_put_contents(__DIR__ . static::FILE, time());
+        if(is_file(__DIR__ . '/' . static::FILE)) unlink (__DIR__ . '/' . static::FILE);
+        file_put_contents(__DIR__ . '/' . static::FILE, time());
     }
     
     public function isExpiredByLastStartTime() {
-        $lastStarted = (int) (is_file(static::FILE) ? file_get_contents(__DIR__ . static::FILE) : 0);
+        $lastStarted = (int) (is_file(__DIR__ . '/' . static::FILE) ? file_get_contents(__DIR__ . '/' . static::FILE) : 0);
         $lastStarted += static::EXPIRE;
         
         return $lastStarted < time();
@@ -20,7 +20,7 @@ class Demon {
     
     public function isWorked() {        
         try {
-            $response = file_get_contents(__DIR__ . static::HOST);
+            $response = file_get_contents(__DIR__ . '/' . static::HOST);
             return !empty($response);
         } catch (Exception $ex) {}
         
