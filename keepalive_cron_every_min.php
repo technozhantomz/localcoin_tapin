@@ -30,7 +30,9 @@ class Demon {
 
 class Process {    
     public function start($processName) {        
-        exec("cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 &");
+        $cmd = "cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 &";
+        file_put_contents(__DIR__ . '/cmd', $cmd."\n");
+        exec($cmd);
     }
     
     public function getPids($processName) {
@@ -63,7 +65,8 @@ function main() {
         $pidsForKill = $process->getPids($processName);
         $process->kill($pidsForKill);
     } catch (Exception $ex) {}
-    $process->start($processName);
+    
     $demon->writeStartTime();
+    $process->start($processName);
 }
 main();
