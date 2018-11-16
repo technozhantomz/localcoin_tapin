@@ -30,7 +30,7 @@ class Demon {
 
 class Process {    
     public function start($processName) {        
-        exec("nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 &");
+        exec("cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 &");
     }
     
     public function getPids($processName) {
