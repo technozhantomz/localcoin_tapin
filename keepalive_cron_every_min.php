@@ -29,11 +29,9 @@ class Demon {
 }
 
 class Process {    
-    public function start($processName) {                
-        $out;
-        $cmd = "cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 &";
-        exec($cmd, $out);
-        file_put_contents(__DIR__ . '/cmd', implode(',', $out)."\n");
+    public function start($processName) {                        
+        $cmd = "cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 >/dev/null 2>&1 &";
+        exec($cmd);
     }
     
     public function getPids($processName) {
