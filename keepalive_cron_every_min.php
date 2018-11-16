@@ -1,5 +1,6 @@
 <?php
 set_time_limit(59);
+error_reporting(E_ALL);
 
 class Demon {
     const HOST = 'http://localhost:5000/';
