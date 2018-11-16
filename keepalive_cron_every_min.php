@@ -1,4 +1,6 @@
 <?php
+set_time_limit(59);
+
 class Demon {
     const HOST = 'http://localhost:5000/';
     const FILE = 'lastnohupstart.unixtime';
