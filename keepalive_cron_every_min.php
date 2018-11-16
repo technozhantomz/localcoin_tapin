@@ -20,7 +20,7 @@ class Demon {
     
     public function isWorked() {        
         try {
-            $response = file_get_contents(__DIR__ . '/' . static::HOST);
+            $response = file_get_contents(static::HOST);
             return !empty($response);
         } catch (Exception $ex) {}
         
