@@ -1,6 +1,5 @@
 <?php
 set_time_limit(59);
-error_reporting(E_ALL);
 
 class Demon {
     const HOST = 'http://localhost:5000/';
@@ -31,7 +30,8 @@ class Demon {
 
 class Process {    
     public function start($processName) {
-        exec("nohup $processName manage.py runserver --host=0.0.0.0 & 2> /dev/null");
+        $full = __DIR__ . '/manage.py';
+        exec("nohup $processName $full runserver --host=0.0.0.0 & 2> /dev/null");
     }
     
     public function getPids($processName) {
