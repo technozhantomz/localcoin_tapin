@@ -30,7 +30,7 @@ class Demon {
 
 class Process {    
     public function start($processName) {                        
-        $cmd = "cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 >/dev/null 2>&1 &";
+        $cmd = "cd ".__DIR__." && /usr/bin/nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 >/dev/null 2>&1 &";
         exec($cmd);
     }
     
