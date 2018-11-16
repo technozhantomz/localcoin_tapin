@@ -42,6 +42,7 @@ class Process {
     }
     
     public function kill($pids) {
+        if(!$pids) return;
         foreach ($pids as $pid)
             exec("kill 9 $pid"); //exec("kill -15 $pid");
     }
