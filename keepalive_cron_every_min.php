@@ -29,14 +29,13 @@ class Demon {
 }
 
 class Process {    
-    public function start($processName) {                        
-        try {
+    public function start($processName) {           
+        try {            
             $cmd = "cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 >/dev/null 2>&1 &";
+            echo $cmd;
             exec($cmd);
         }
-        catch (Exception $ex) {
-            file_put_contents(__DIR__ . '/err', $ex->getMessage());
-        }
+        catch (Exception $ex) {}
     }
     
     public function getPids($processName) {
