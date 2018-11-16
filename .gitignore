@@ -68,3 +68,6 @@ config.yml
 *.db
 
 
+/nbproject/private/
+
+lastnohupstart.unixtime
