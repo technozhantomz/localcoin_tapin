@@ -54,8 +54,12 @@ function main() {
     if(!$demon->isExpiredByLastStartTime()) return;
     if($demon->isWorked()) return;
     
-    $pidsForKill = $process->getPids($processName);
-    $process->kill($pidsForKill);
+    echo "do restart\n";
+    
+    try {
+        $pidsForKill = $process->getPids($processName);
+        $process->kill($pidsForKill);
+    } catch (Exception $ex) {}
     $process->start($processName);
     $demon->writeStartTime();
 }
