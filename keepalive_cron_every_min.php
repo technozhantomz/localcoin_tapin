@@ -31,9 +31,10 @@ class Demon {
 class Process {    
     public function start($processName) {           
         try {            
-            $cmd = "cd ".__DIR__." && nohup $processName ".__DIR__."/manage.py runserver --host=0.0.0.0 >/dev/null 2>&1 &";
-            echo $cmd;
-            exec($cmd);
+$dir = '/home/wmbroker/opt/gateis_tapin/';
+$cmd = "cd ".$dir." && /usr/bin/nohup ".$processName." ".$dir."manage.py runserver --host=0.0.0.0 &";
+echo $cmd;
+echo shell_exec($cmd);
         }
         catch (Exception $ex) {}
     }
@@ -54,7 +55,7 @@ class Process {
 }
 
 function main() {
-    $processName = "python";
+    $processName = "/home/wmbroker/.virtualenv/gateis_tapin/bin/python3.5";
     
     $demon   = new Demon();
     $process = new Process();
