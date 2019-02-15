@@ -39,7 +39,7 @@ def tapbasic(referrer):
         return api_error("Registration limit achieved")
 
     # prevent massive account registration
-    if request.remote_addr != "127.0.0.1" and models.Accounts.exists(request.remote_addr):
+    if request.args.get("ip") != "127.0.0.1" and models.Accounts.exists(request.args.get("ip")):
         return api_error("Only one account per IP")
 
     # Check if account name is cheap name
@@ -98,7 +98,7 @@ def tapbasic(referrer):
         log.error(traceback.format_exc())
         return api_error(str(e))
 
-    models.Accounts(account["name"], request.remote_addr)
+    models.Accounts(account["name"], request.args.get("ip"))
     regestree = Account(account["name"], bitshares_instance=bitshares)
     
     try:
